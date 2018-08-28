@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+function chamarPhp(tempo){
+	setTimeout(() => {
+		        $.ajax({url: "executarShell.php", success: function(result){
+		         //alert(result);
+		        }});  
+	        }   
+        , 1000);
+}
+
+
+$(document).ready(function(){
+		chamarPhp(1000);
+		chamarPhp(2000);
+		chamarPhp(3000);		
+});
+</script>
+
+
+
+
+</body>
+</html> 

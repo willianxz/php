@@ -1,0 +1,14 @@
+Olá, antes de tudo gostaria de dizer que utilizar a função mail(), é muito limitada, apesar de poder enviar email com html e até mesmo anexar arquivos.
+
+Porque é limitada?
+A resposta é que ao subir isso para uma hospedagem, a própria hospedagem possui restrições quanto ao envio de e-mail, limitando nosso script com a função mail() de enviar mais de X e-mail por minuto ou dia, depende da hospedagem adquerida, porem lembre-se que há esse bloqueio, essa restrição.
+
+Porque isso ocorre?
+O envio de email, causa lentidão na hospedagem dos sites e será ela a responsavel pelo envio de nosso e-mail, portanto necessitamos de um servidor de envio de email.
+
+Mais vou poucas vezes ao dia?
+As hospedagem não foram feitas para o envio de e-mail, por esse motivo ainda assim é recomendado o uso de um servidor de envio de emails.
+
+O que devo fazer?
+Você deve manter seu sistema na hospedagem, porem utilizar um servidor de email para o envio de email, isso te dara mais segurança de que realmente seus e-mails estão chegando a onde devem chegar, com isso seu sistema terá mais agilidade no envio dos email e menos chance de algo dar errado.
+

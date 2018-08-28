@@ -1,0 +1,9 @@
+1 - Primeiramente para fazer funcionar o envio de email você tem que subir esses arquivos para uma hospedagem como a hostinger.
+2 - Abrir o arquivo de enviaremail e troque o email/senha, pelo seu respectivo Gmail.
+3 - Abrir o arquivo de enviaremail trocando o modo $mail->SMTPSecure = 'ssl'; para $mail->SMTPSecure = 'tls';
+4 - Tente enviar pelo menos 2 email rodando o script, mesmo dando erro.
+5 - Logo após as duas tentativas de envio, abra o seu Gmail, o que foi definido no Script e verifique se o próprio Gmail te enviou um email te alertando sobre alguem estar tentando acessar seu email, aqui esse email veio com o titulo 'Revisar tentativa de login bloqueada', abra-o, ele irá falar que sua conta esta em risco e que alguem tento acessar sua conta, mais embaixo vai estar escrito: 
+'Foi você que tentou fazer login?'
+Então, clique no link, onde aqui ta escrito 'permitindo o acesso a apps menos seguros'
+Você ira para uma outra janela chamada de 'Aplicativos menos seguros', clique no botão para ativar e permitir aplicativos menos seguro.
+6 - Rode novamente seu script, se funcionar com tls, também funcionara com ssl, onde você pode trocar de tls para ssl.
