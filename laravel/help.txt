@@ -1,0 +1,86 @@
+------------------- INSTRUÇÕES -------------------
+
+Após ter feito a instalação correta do xamp e do composer, para criar um novo projeto do laravel use o comando:
+ composer create-project --prefer-dist laravel/laravel nomedomeuprojeto
+
+
+- Quando você alterar o arquivo webpack.mix.js, importando algum script novo, você deve sempre rodar no terminal o seguinte comando:
+ npm run development
+Dessa forma ele irá reconhecer o que foi salvo no webpack.mix.js
+
+
+
+----- PARA INSTALAR O BOOTSTRAP NO LARAVEL -------
+
+1 - Rode no terminal: 
+npm install jquery
+npm install bootstrap
+
+2 - Na pasta viws, crie uma nova pasta chamada scss e um arquivo style.scss detro dela.
+
+3 - Edite o arquivo style.scss colocando o seguinte código:
+@import "~bootstrap/scss/bootstrap";
+
+
+3 - Em seu arquivo webpack.mix.js coloque o seguinte código:
+mix
+
+    .sass('resources/views/scss/style.scss','public/site/bootstrap.css')
+    .scripts('node_modules/jquery/dist/jquery.js','public/site/jquery.js')
+    .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'public/site/bootstrap.js');
+
+4 - Rode o npm run development para atualizar o que foi salvo.
+
+5 - Em seu arquivo de front-end, importe o css dessa forma:
+<head>
+ <link rel="stylesheet" href="{{ asset('site/bootstrap.css') }}">
+</head>
+
+6 - Em seu arquivo de front-end, importe o jquery e o bootstrap dessa forma:
+
+<body>
+<h1>Testando Bootstrap</h1>
+<button class="btn btn-lg btn-success">Bootstrap OK</button>
+ <script src="{{ asset('site/jquery.js') }}"></script>
+ <script src="{{ asset('site/bootstrap.js') }}"></script>
+</body>
+
+
+7 - Altere seu arquivo webpack.mix.js colocando o seguinte código:
+mix
+
+    .sass('resources/views/scss/style.scss','public/site/style.css')
+    .scripts('node_modules/jquery/dist/jquery.js','public/site/jquery.js')
+    .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'public/site/bootstrap.js');
+
+8 - Rode o comando, dessa forma criamos um novo arquivo style.css na pasta site com o mesmo código do bootstrap.css:
+ npm run development
+
+9 - Exclua o arquivo bootstrap.css da pasta site.
+
+10 - Volte no seu arquivo de front-end e troque a referencia do css:
+<head>
+ <link rel="stylesheet" href="{{ asset('site/style.css') }}">
+</head>
+
+11 - Agora no seu arquivo style.scss que está dentro da pasta scss na pasta views. Coloque o seguinte código:
+$theme-colors: (
+    "orange": #ff2d20,
+);
+@import "~bootstrap/scss/bootstrap";
+
+12 - Rode o comando no terminal para atualizar o que foi salvo:
+ npm run development
+
+13 - Agora que você criou uma classe do Bootstrap personalizada no arquivo style.scss você pode voltar pro seu arquivo front-end e alterar o button com a nova classe orange:
+<body>
+<h1>Testando Bootstrap</h1>
+<button class="btn btn-lg btn-orange">Bootstrap OK</button>
+<script src="{{ asset('site/jquery.js') }}"></script>
+<script src="{{ asset('site/bootstrap.js') }}"></script>
+</body>
+
+
+
+OBS: Criamos esse style.scss para poder personalizar os estilos do Bootstrap. Se quiser saber sobre outras variaveis consulte o seguinte site:
+https://getbootstrap.com/docs/4.0/getting-started/theming/

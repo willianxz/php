@@ -22,8 +22,8 @@
         <td>{{ $user->name }}</td>
         <td>{{ $user->email }}</td>
         <td>
-            <a href="{{ Route('users.list', ['user' => $user->id]) }}">Ver Usuário</a>
-            <form action="{{ Route('users.destroy', ['user' => $user->id]) }}}" method="post">
+            <a href="{{ route('users.list', ['user' => $user->id]) }}">Ver Usuário</a>
+            <form action="{{ route('users.destroy', ['user' => $user->id]) }}}" method="post">
                 @csrf
                 @method('delete')
                 <input type="hidden" name="user" value="{{ $user->id }}}"/>
