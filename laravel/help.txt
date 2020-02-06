@@ -10,6 +10,19 @@ Dessa forma ele irá reconhecer o que foi salvo no webpack.mix.js
 
 
 
+--------------- SOBRE OS PROJETOS --------------
+
+projeto-basico-2
+Mostra um exemplo de CRUD completo, usando rotas.
+
+projeto-basico-3
+Mostra um exemplo de CRUD completo mais automatico, usando rotas.
+
+projeto-com-bootstrap
+Mostra como criar um projeto com a instalação correta do Bootstrap.
+
+
+
 ----- PARA INSTALAR O BOOTSTRAP NO LARAVEL -------
 
 1 - Rode no terminal: 
