@@ -3,6 +3,73 @@
 Após ter feito a instalação correta do xamp e do composer, para criar um novo projeto do laravel use o comando:
  composer create-project --prefer-dist laravel/laravel nomedomeuprojeto
 
+Rode o Apache e o Mysql
+
+Vá no Mysql, crie um banco de dados e coloque o collation dele para ser utf8_general_ci
+
+Na pasta do seu projeto do Laravel, abra  o arquivo chamado:
+.env
+Troque as configurações do banco de dados, colocando o banco de dados criado.
+
+Após isso crie as tabelas do banco de dados através do Laravel, abra o terminal na pasta do projeto do Laravel e execute o comando:
+php artisan migrate 
+
+Depois você precisa descomentar um comentario no arquivo RouteServiceProvider
+Descomente a linha 29:
+protected $namespace = 'App\\Http\\Controllers';
+Ao fazer isso não terá mais erro de não encontrar controladores ex do erro:
+Target class [Form\TestController] does not exist.
+
+Nos controladores quando for chamar algum modelo, lembresse de colocar o "use" correto ex:
+No controlador chamado TestController.php coloquei o:
+use App\Models\User;
+Para que ele encontre o modelo de user e eu possa listar os usuarios.
+Se olhar o modelo User, ele terá o namespace:
+namespace App\Models;
+Se você chamar com um use errado, ele não encontrara o modelo e dara erro.
+
+
+LISTA DE COMANDOS ÚTEIS:
+php artisan migrate - Cria as tabelas do banco de dados.
+
+Faz a limpeza do Laravel:
+php artisan config:cache
+php artisan config:clear
+
+
+CONFIGURAÇÕES PARA CRIAR ROTAS RAPIDAS:
+//rota padrão: Route::verb('url', 'controller@metodo')->name('nome-da-rota');
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+//Quando acessar a URL, irá acessar o controlador, depois o seu método.
+//Route::get('listagem-usuario', 'UserController@listUser');
+
+//Isso serve para eu poder retirar a necessidade de ficar chamando Form\\ nas rotas.
+//Ex: Route::get('usuarios', 'Form\\TestController@listAllUsers')->name('users.listAll');
+Route::group(['namespace' => 'Form'], function(){
+    //VERBO GET para selecionar dados no banco
+    //ATENÇÃO todas as rotas que são dinamicas devem ficar abaixo e as fixas logo acima.
+    Route::get('usuarios', 'TestController@listAllUsers')->name('users.listAll');
+    Route::get('usuarios/novo', 'TestController@formAddUser')->name('users.formAddUser');
+    Route::get('usuarios/editar/{user}', 'TestController@formEditUser')->name('users.formEditUser');
+    Route::get('usuarios/{user}', 'TestController@listUser')->name('users.list');
+
+    //VERBO POST para inserir dados no banco
+    //Rota para o Action do formulario de cadastro
+    Route::post('usuarios/store', 'TestController@storeUser')->name('users.store');
+
+    //VERBO PUT/PATH para editar dados no banco
+    Route::put('usuarios/edit/{user}', 'TestController@edit')->name('users.edit');
+
+    //VERBO DELETE para excluir dados no banco
+    Route::delete('usuarios/destroy/{user}', 'TestController@destroy')->name('users.destroy');
+
+});
+
+
 
 - Quando você alterar o arquivo webpack.mix.js, importando algum script novo, você deve sempre rodar no terminal o seguinte comando:
  npm run development
